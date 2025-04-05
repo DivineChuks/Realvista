@@ -225,7 +225,7 @@ const FAQPage: React.FC = () => {
                                 </div>
                                 <h3 className="text-lg font-medium text-gray-900 mb-1">No results found</h3>
                                 <p className="text-gray-500">
-                                    Try adjusting your search or filter to find what you're looking for.
+                                    Try adjusting your search or filter to find what you&apos;re looking for.
                                 </p>
                             </div>
                         )}
@@ -269,7 +269,7 @@ const FAQPage: React.FC = () => {
                                     </div>
                                     <h3 className="text-lg font-medium text-gray-900 mb-1">No results found</h3>
                                     <p className="text-gray-500">
-                                        Try adjusting your search or filter to find what you're looking for.
+                                        Try adjusting your search or filter to find what you&apos;re looking for.
                                     </p>
                                 </div>
                             )}
@@ -283,7 +283,7 @@ const FAQPage: React.FC = () => {
                         <div className="md:w-1/2 bg-[#348b8b] p-8 text-white">
                             <h2 className="text-2xl font-bold mb-4">Still Have Questions?</h2>
                             <p className="mb-6 opacity-90">
-                                Our team is here to help you with any questions about real estate that weren't answered above.
+                                Our team is here to help you with any questions about real estate that weren&apos;t answered above.
                             </p>
                             <div className="space-y-4">
                                 <div className="flex items-center">

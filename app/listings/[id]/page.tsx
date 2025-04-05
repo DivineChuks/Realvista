@@ -9,7 +9,6 @@ import {
     ChevronLeft,
     Share2,
     Check,
-    X
 } from 'lucide-react';
 import Link from 'next/link';
 

@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
-import { HelpCircle, MessageCircle, ChevronDown, Search } from 'lucide-react';
+import { HelpCircle, MessageCircle, ChevronDown } from 'lucide-react';
 
 interface FaqProps {
     question: string,

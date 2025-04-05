@@ -46,7 +46,7 @@ const agentsData = [
   }
 ];
 
-const AgentCard = ({ agent, onDetailsClick }) => {
+const AgentCard = ({ agent, onDetailsClick }: any) => {
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl">
       <div className="relative">
@@ -79,7 +79,7 @@ const AgentCard = ({ agent, onDetailsClick }) => {
         <div className="mb-4">
           <h4 className="font-semibold text-gray-800 mb-2">Services</h4>
           <div className="flex flex-wrap gap-2">
-            {agent.services.map((service, index) => (
+            {agent.services.map((service:string, index:number) => (
               <span 
                 key={index} 
                 className="bg-teal-50 text-teal-600 text-sm px-3 py-1 rounded-full"
@@ -115,13 +115,13 @@ const AgentCard = ({ agent, onDetailsClick }) => {
 
 const AgentsPage = () => {
   const [filterVerified, setFilterVerified] = useState(false);
-  const [selectedAgent, setSelectedAgent] = useState(null);
+  const [selectedAgent, setSelectedAgent] = useState<any>(null);
 
   const filteredAgents = filterVerified 
     ? agentsData.filter(agent => agent.verified)
     : agentsData;
 
-  const handleAgentDetailsClick = (agent) => {
+  const handleAgentDetailsClick = (agent: any) => {
     setSelectedAgent(agent);
   };
 
@@ -211,7 +211,7 @@ const AgentsPage = () => {
                     
                     <h3 className="text-xl font-semibold mb-4">Services</h3>
                     <div className="flex flex-wrap gap-2">
-                      {selectedAgent.services.map((service, index) => (
+                      {selectedAgent.services.map((service:any, index:number) => (
                         <span 
                           key={index} 
                           className="bg-teal-50 text-teal-600 text-sm px-3 py-1 rounded-full"

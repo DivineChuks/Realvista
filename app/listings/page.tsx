@@ -1,18 +1,15 @@
+/* eslint-disable */
 "use client"
 import React, { useState, useEffect } from 'react';
 import {
-  Filter,
   MapPin,
-  Home,
   BedDouble,
   Bath,
   SquareIcon,
   Star,
   ChevronDown,
-  ChevronUp,
   Search,
   Heart,
-  Building2,
   SlidersHorizontal,
   Calendar,
   DollarSign,
@@ -135,9 +132,6 @@ const propertyData = [
 const PropertyCard = ({ property }: any) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
-
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

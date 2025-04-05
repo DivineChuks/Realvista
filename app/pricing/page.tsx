@@ -1,13 +1,11 @@
 "use client"
 
 import React, { useState } from 'react';
-import { Check, X, ArrowRight, Star, Info } from 'lucide-react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Check, ArrowRight, Star, Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
 
 // TypeScript interfaces
 interface Feature {
@@ -237,7 +235,7 @@ const PricingPage: React.FC = () => {
 
           {/* Pricing Plans */}
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mt-8">
-            {plans[userType][billingCycle]?.map((plan, index) => (
+            {plans[userType][billingCycle]?.map((plan) => (
               <Card
                 key={plan.name}
                 className={`
@@ -372,7 +370,7 @@ const PricingPage: React.FC = () => {
                       <Star key={i} className="w-5 h-5 fill-current" />
                     ))}
                   </div>
-                  <p className="text-gray-700 italic mb-4">"{testimonial.quote}"</p>
+                  <p className="text-gray-700 italic mb-4">&quot;{testimonial.quote}&quot;</p>
                   <p className="font-semibold">{testimonial.name}</p>
                   <p className="text-sm text-gray-600">{testimonial.title}</p>
                 </div>

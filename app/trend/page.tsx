@@ -5,7 +5,6 @@ import {
   MapPin, 
   Home, 
   DollarSign, 
-  ChevronDown, 
   BarChart2, 
   Globe 
 } from 'lucide-react';

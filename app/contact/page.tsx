@@ -5,11 +5,8 @@ import {
   MapPin, 
   Phone, 
   Mail, 
-  Send, 
   Check, 
   Clock, 
-  User, 
-  MessageCircle,
   ArrowRight 
 } from 'lucide-react';
 
@@ -47,8 +44,8 @@ const ContactPage = () => {
         phone: '',
         message: ''
       });
-    } catch (error) {
-      setFormStatus('error');
+    } catch (error: any) {
+      setFormStatus(error);
     }
   };
 
@@ -59,10 +56,10 @@ const ContactPage = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Let's Connect
+              Let&apos;s Connect
             </h1>
             <p className="text-lg md:text-xl opacity-90 mb-8">
-              Have questions about your real estate journey? We're here to provide expert guidance every step of the way.
+              Have questions about your real estate journey? We&apos;re here to provide expert guidance every step of the way.
             </p>
             <div className="inline-flex items-center bg-white text-[#348b8b] rounded-full px-6 py-3 shadow-lg font-medium">
               <Phone className="mr-2 w-5 h-5" />

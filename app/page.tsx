@@ -1,5 +1,4 @@
 import React from 'react'
-import Hero from './_components/Hero'
 import RealvistaFeatures from './_components/Features'
 import RealvistaAdvantages from './_components/Advantages'
 import RealvistaAllInOneSection from './_components/AllInOneSection'

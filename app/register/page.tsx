@@ -12,7 +12,6 @@ import {
     ArrowLeft
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 
 type formDataProps = {
     firstName: string,

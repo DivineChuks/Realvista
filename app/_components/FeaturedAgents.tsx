@@ -29,7 +29,7 @@ const agents = [
     }
 ];
 
-const AgentCard = ({ agent }) => {
+const AgentCard = ({ agent }: any) => {
     return (
         <div className="flex flex-col items-center">
             <div className="rounded-full overflow-hidden w-36 h-36 mb-4">
