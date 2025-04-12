@@ -265,7 +265,7 @@ const PricingPage: React.FC = () => {
                   text-center
                 `}
               >
-                Team
+                Agent
               </button>
             </div>
           </div>
@@ -363,10 +363,10 @@ const PricingPage: React.FC = () => {
                         : plan.name === 'Free'
                           ? 'bg-gray-100 text-gray-900 hover:bg-gray-200 border border-gray-200'
                           : plan.name === 'Basic'
-                            ? 'bg-blue-600 text-white hover:bg-blue-700'
+                            ? 'bg-[#348b8b] text-white hover:bg-[#348b8b]'
                             : plan.name === 'Premium'
-                              ? 'bg-purple-600 text-white hover:bg-purple-700'
-                              : 'bg-green-600 text-white hover:bg-green-700'
+                              ? 'bg-[#FB902D] text-white hover:bg-[#FB902D]'
+                              : 'bg-[#348b8b] text-white hover:bg-[#348b8b]'
                       }
                     `}
                   >
