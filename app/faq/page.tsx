@@ -18,84 +18,119 @@ const FAQPage: React.FC = () => {
     const [openItems, setOpenItems] = useState<number[]>([]);
 
     // FAQ categories
-    const categories = ['General', 'Properties', 'Buying', 'Selling', 'Financing'];
+    const categories = ['General', 'Portfolio Management', 'Investment Platform', 'Market', 'Mutual Investment'];
 
     // FAQ data
     const faqItems: FAQItem[] = [
         {
-            question: "How do I start searching for properties?",
-            answer: "You can begin your property search by using our search bar at the top of the homepage. Filter by location, price range, property type, number of bedrooms, and more to find listings that match your criteria. You can also create an account to save your favorite properties and receive alerts for new listings that match your preferences.",
+            question: "What services does RealVista offer?",
+            answer: "RealVista provides a wide range of real estate services, which are categorized into four: (i) Portfolio Management: We provide a robust platform that allows users to update and manage their diverse real estate portfolios in real time. (ii) Investment Platform: Our investment services allow beginners and established real estate investors to seamlessly access affordable properties and generate cash flow by acquiring property slots depending on their financial capabilities. (iii) Market: RealVista is the meeting place for real estate buyers and sellers. Registered users, real estate agents, and companies can freely upload properties for rent or sale. These grants access to a pool of quality properties for the buyers. (iv) Mutual Investment: This unique feature allows for group mutual funding of properties. A group of investors can create an independent group. Each group can add member, upload, and manage their properties independently.",
             category: "General"
         },
         {
-            question: "What documents do I need when applying for a mortgage?",
-            answer: "When applying for a mortgage, you typically need to provide proof of income (pay stubs, W-2s, tax returns), proof of assets (bank statements, investment accounts), identification (driver's license, Social Security number), employment verification, and credit history. Additional documents may be required depending on your specific situation and the lender's requirements.",
-            category: "Financing"
-        },
-        {
-            question: "How long does the home buying process usually take?",
-            answer: "The home buying process typically takes 30-60 days from offer acceptance to closing, but this can vary based on various factors. This includes the time needed for mortgage approval, home inspection, appraisal, and addressing any issues that arise during these steps. Cash purchases can often close more quickly, while complicated financing or property issues might extend the timeline.",
-            category: "Buying"
-        },
-        {
-            question: "What's the difference between a fixed-rate and adjustable-rate mortgage?",
-            answer: "A fixed-rate mortgage maintains the same interest rate throughout the entire loan term, providing predictable monthly payments. An adjustable-rate mortgage (ARM) typically starts with a lower interest rate for an initial period (e.g., 5, 7, or 10 years), after which the rate adjusts periodically based on market indices. ARMs may offer lower initial payments but come with the risk of higher payments later if interest rates rise.",
-            category: "Financing"
-        },
-        {
-            question: "How do I determine the right listing price for my home?",
-            answer: "Determining the right listing price involves analyzing comparable properties that have recently sold in your area, considering the current market conditions, and evaluating your home's unique features and condition. Our professional agents can provide a comprehensive market analysis to help you set a competitive price that attracts buyers while maximizing your return.",
-            category: "Selling"
-        },
-        {
-            question: "What are closing costs and who pays them?",
-            answer: "Closing costs are fees associated with finalizing a real estate transaction, typically ranging from 2-5% of the loan amount. These may include lender fees, appraisal fees, title insurance, attorney fees, recording fees, and prepaid items like property taxes and homeowners insurance. The payment of closing costs is negotiable between buyers and sellers, though buyers typically pay most closing costs. However, sellers often cover real estate commission fees.",
-            category: "Buying"
-        },
-        {
-            question: "How can I improve my chances of getting my offer accepted?",
-            answer: "To improve your chances of getting an offer accepted, consider getting pre-approved for financing, making a competitive offer based on comparable sales, limiting contingencies when possible, being flexible with closing dates, writing a personal letter to the seller, and working with an experienced real estate agent who understands the local market dynamics.",
-            category: "Buying"
-        },
-        {
-            question: "What's the difference between a condo and a townhouse?",
-            answer: "Condos and townhouses differ primarily in structure and ownership. Condos are typically units within a larger building or complex where owners own their interior space but share ownership of exterior areas and amenities. Townhouses are multi-floor homes that share walls with adjacent properties but include ownership of the land beneath the unit and often the exterior structure. Townhouses generally offer more privacy and space, while condos often provide more amenities and lower maintenance responsibilities.",
-            category: "Properties"
-        },
-        {
-            question: "Do I need a real estate agent to buy or sell a home?",
-            answer: "While it's not legally required to use a real estate agent, professional representation offers significant advantages. Agents provide market expertise, negotiation skills, access to more listings, guidance through complex paperwork, and help navigating potential pitfalls in the transaction process. Experienced agents often help clients save money and avoid costly mistakes while making the process much smoother and less stressful.",
+            question: "How do I create an account on your website/app?",
+            answer: "To create an account, click on the \"Sign Up\" button on the homepage of our website or app. If signing up from the website, you will be prompted to download the app to complete the registration. On the App, you'll be prompted to enter your Full name, email address, and password. After completing the registration, you'll receive a confirmation email with an activation token. Input the code on the app or click the link in your email to activate your account.",
             category: "General"
         },
         {
-            question: "What is a home inspection and why is it important?",
-            answer: "A home inspection is a thorough evaluation of a property's condition conducted by a professional inspector. It typically examines the structure, systems (electrical, plumbing, HVAC), and major components of the home. Inspections are important because they identify existing or potential problems that may not be visible during casual viewing, helping buyers make informed decisions, negotiate repairs or price adjustments, and avoid unexpected costs after purchase.",
-            category: "Buying"
-        },
-        {
-            question: "How do property taxes work and how are they calculated?",
-            answer: "Property taxes are assessed by local governments to fund public services like schools, infrastructure, and emergency services. They're calculated by multiplying your property's assessed value by the local tax rate (mill rate). Assessment methods vary by location, with some areas reassessing annually and others doing so less frequently. Many regions offer exemptions or reductions for primary residences, seniors, veterans, or other qualifying circumstances.",
+            question: "Can I access your website/app for free?",
+            answer: "Yes, our website and app can be accessed freely. You can browse property listings, schedule viewings, and access other features at no cost. However, some of our premium services, like Portfolio management and Investment platforms, require a subscription.",
             category: "General"
         },
         {
-            question: "What should I do to prepare my home for selling?",
-            answer: "To prepare your home for selling, focus on enhancing curb appeal, decluttering and depersonalizing interiors, making minor repairs, deep cleaning, and potentially staging to showcase the home's potential. Consider a pre-listing inspection to identify and address issues before buyers discover them. Professional photography and virtual tours can also significantly improve your listing's appeal in online searches.",
-            category: "Selling"
+            question: "Are there Limits to the number of properties I can add to my portfolio?",
+            answer: "There are no limits to the number of properties you can add or manage. However, there are different subscription fees based on the number of properties you wish to add.",
+            category: "Portfolio Management"
         },
         {
-            question: "How do I qualify for a mortgage?",
-            answer: "Mortgage qualification depends on factors including credit score (typically 620+ for conventional loans), debt-to-income ratio (ideally below 43%), stable employment history, sufficient income to cover payments, and adequate down payment (typically 3-20% depending on loan type). Lenders will also consider your assets, liabilities, and the property's value. Government-backed loans like FHA, VA, or USDA loans may have different qualification requirements and can be more accessible for some buyers.",
-            category: "Financing"
+            question: "How do I know the exact coordinates of my property?",
+            answer: "To ensure you enter the accurate and exact coordinates of your property, we have provided a tutorial on the learn page to guide you on that. Please visit our learn page on the app.",
+            category: "Portfolio Management"
         },
         {
-            question: "What's the difference between pre-qualification and pre-approval?",
-            answer: "Pre-qualification is an informal estimate of how much you might be able to borrow based on information you provide about your finances. Pre-approval is a more formal process where a lender verifies your financial information, checks your credit, and commits to lending a specific amount subject to certain conditions. Pre-approval carries more weight with sellers since it demonstrates you're serious and financially capable of completing the purchase.",
-            category: "Financing"
+            question: "How do I update a property in my portfolio?",
+            answer: "To update any property in your portfolio, select the portfolio button. Once on your portfolio, click the addition icon and then select 'update property.' You can also update your property from the 'Manager' button on the app.",
+            category: "Portfolio Management"
         },
         {
-            question: "How do homeowners association (HOA) fees work?",
-            answer: "HOA fees are regular payments made by property owners within a community governed by a homeowners association. These fees fund maintenance of common areas, amenities, and services. They may also cover utilities like water or garbage collection, insurance for shared structures, and reserves for future repairs. Fees vary widely based on property type, location, amenities offered, and management efficiency. Before purchasing in an HOA community, review their financial statements, rules, and fee history.",
-            category: "Properties"
+            question: "Who can invest with RealVista?",
+            answer: "The RealVista investment platform is regulated under real estate investment regulations. Our investment platform is mostly suitable for institutional investors or individuals with the experience, knowledge, and expertise necessary to make independent investment decisions and understand the risks posed by investment in real estate properties.",
+            category: "Investment Platform"
+        },
+        {
+            question: "How can I learn more about investment opportunities with RealVista?",
+            answer: "We have a simplified system for you to discover more about investment opportunities with us. You can begin by exploring our website, where you will find detailed information about our investment products, strategies, and current portfolios. Additionally, consider registering on our mobile app or website to benefit from notifications of our latest product launches and newsletters.",
+            category: "Investment Platform"
+        },
+        {
+            question: "Are there limits to the number of slots one can purchase?",
+            answer: "There are no limits to the number of slots you can purchase. However, the number of slots allocated to properties differs and is limited. The available slots are always listed with the property and updated in real time. You can only purchase the maximum number of available slots at the time of your payment.",
+            category: "Investment Platform"
+        },
+        {
+            question: "How do I join a mutual fund group?",
+            answer: "Every mutual fund group is an independent and closed group. They are not listed/created by RealVista, and therefore, we cannot add you to a group. You can only be added to a group through a private invitation by the admin of the group.",
+            category: "Mutual Investment"
+        },
+        {
+            question: "What are the rules of the groups?",
+            answer: "Each group has its own private terms and conditions. We encourage you to pay close attention and review the rules before joining any group. The groups are not managed by RealVista; therefore, we will not be held responsible for any mismanagement of funds or wrong investment decisions.",
+            category: "Mutual Investment"
+        },
+        {
+            question: "How do I search for properties on your platform?",
+            answer: "To search for properties, use the search bar on the homepage. You can also select filters such as location, price range, property type, and features to personalize your search. Also, you can browse through curated categories or explore the map view to find listings near your preferred location.",
+            category: "Market"
+        },
+        {
+            question: "How do I make an offer on a property?",
+            answer: "Once you find a property you're interested in, you can contact the listing agent through the website or app to make an offer. The agents' contact details are listed with the properties.",
+            category: "Market"
+        },
+        {
+            question: "How do I schedule a property viewing?",
+            answer: "To schedule a viewing, simply click on the \"Schedule a Viewing\" button on the property listing page. Select a date and time that work for you, and the listing agent/company will confirm the appointment. You will receive a reminder via email or SMS before the viewing.",
+            category: "Market"
+        },
+        {
+            question: "How can I list my property for sale on your platform?",
+            answer: "You can only list properties through our mobile app. To list your property, you will need to create an agent/company account. On the homepage, select the 'manager' option, and then select 'list to the market'. Provide details about the property, upload high-quality photos, and set a price. Our team will review the listing to ensure it meets our standards before publishing it on the platform.",
+            category: "Market"
+        },
+        {
+            question: "Do you offer professional photography services?",
+            answer: "Yes, we offer professional photography and videography services to showcase your property in the best possible light, depending on the city. Contact us through the app or website to arrange a photoshoot.",
+            category: "Market"
+        },
+        {
+            question: "How do I track the progress of my listing?",
+            answer: "You can monitor the performance of your listing by logging into your account, on the homepage, selecting the 'manager' option, and then selecting 'list to the market.' Here, you'll find analytics on views, inquiries, and offers. You may also get notifications on any major developments.",
+            category: "Market"
+        },
+        {
+            question: "I'm having trouble logging into my account. What should I do?",
+            answer: "If you're unable to log in, firstly ensure your internet access is enabled and try logging in again. Secondly, try resetting your password by clicking on the \"Forgot Password\" link on the login page. If the problem persists, please contact our support team through the \"Contact\" section of the website or app for further assistance.",
+            category: "Technical Support"
+        },
+        {
+            question: "How do I update my account information?",
+            answer: "To update your account information, log into your account and visit the \"Profile Settings\" section. From here, you can update your email, phone number, password, and other details.",
+            category: "Technical Support"
+        },
+        {
+            question: "How do I delete my account?",
+            answer: "If you wish to delete your account, log into your account and visit the \"Profile Settings\" section. Scroll down to the bottom of the page. You will see the 'delete account' button; click on it and follow the prompts to delete your account permanently.",
+            category: "Technical Support"
+        },
+        {
+            question: "Is my personal information safe on your platform?",
+            answer: "Yes, we prioritize your privacy and security. We use industry-standard encryption to protect your personal and financial information. For more details, please refer to our Privacy Policy.",
+            category: "Technical Support"
+        },
+        {
+            question: "Do you share my information with third parties?",
+            answer: "We do not share your personal information with third parties unless required for specific services, such as processing payments or for legal purposes. You can review our Privacy Policy for a full explanation of how your data is used.",
+            category: "Technical Support"
         }
     ];
 

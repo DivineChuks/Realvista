@@ -55,10 +55,10 @@ const MeetOurAgents = () => {
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-medium text-gray-800 mb-2">
-                        Meet Our Agents
+                        Featured Agents
                     </h2>
                     <p className="text-gray-600 max-w-2xl mx-auto">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        Meet the top-performing agents trusted by clients across the city.
                     </p>
                 </div>
 

@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 import { Search, MapPin, Bed, DollarSign, Filter } from 'lucide-react';
+import Link from 'next/link';
 
 export default function MainHero() {
     // Search form state
@@ -159,13 +160,13 @@ export default function MainHero() {
 
                                 {/* Search Button */}
                                 <div className="lg:col-span-1 p-1">
-                                    <button
-                                        type="submit"
+                                    <Link
+                                        href="/listings"
                                         className="w-full h-max bg-[#348b8b] text-white font-medium py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
                                     >
                                         <Search className="w-5 h-5" />
-                                        <span>Search</span>
-                                    </button>
+                                        <span>Browse listings</span>
+                                    </Link>
                                 </div>
                             </div>
                         </form>

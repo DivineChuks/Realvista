@@ -107,7 +107,7 @@ const SignUpPage = () => {
     const renderTypeSelection = () => (
         <div className="text-center">
             <h1 className="text-4xl font-bold bg-gradient-to-r from-[#348b8b] to-[#FB902D] bg-clip-text text-transparent mb-3">
-                Welcome to PropertyPro
+                Welcome to Realvista
             </h1>
             <p className="text-gray-600 mb-8 text-lg">Join thousands of users finding their perfect property match</p>
             
@@ -491,7 +491,7 @@ const SignUpPage = () => {
             </h2>
             
             <p className="text-gray-600 mb-8">
-                Welcome to PropertyPro. You can now log in and start
+                Welcome to Realvista. You can now log in and start
                 {userType === 'agent' ? ' listing properties' : ' exploring available properties'}.
             </p>
             
@@ -525,7 +525,7 @@ const SignUpPage = () => {
             <div className="hidden lg:flex lg:w-1/2 bg-[#348b8b] items-center justify-center p-12">
                 <div className="max-w-md text-white">
                     <h2 className="text-4xl font-bold mb-6">Find Your Dream Property</h2>
-                    <p className="text-lg mb-8">Join thousands of satisfied customers who have found their perfect home using PropertyPro.</p>
+                    <p className="text-lg mb-8">Join thousands of satisfied customers who have found their perfect home using Realvista.</p>
                     
                     <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
                         <div className="flex items-start mb-4">

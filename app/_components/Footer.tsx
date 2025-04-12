@@ -1,28 +1,35 @@
 import React from 'react';
-import { 
-  Facebook, 
-  Instagram, 
-  Twitter, 
-  Linkedin, 
-  MapPin, 
-  Mail, 
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  MapPin,
+  Mail,
   Phone,
-  ChevronRight 
+  ChevronRight,
+  X
 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
   const socialLinks = [
-    { icon: Facebook, href: '#' },
-    { icon: Instagram, href: '#' },
-    { icon: Twitter, href: '#' },
-    { icon: Linkedin, href: '#' }
+    { icon: Facebook, href: 'https://www.facebook.com/share/1FaQPGrXEN/' },
+    { icon: Instagram, href: 'https://www.instagram.com/realvista_ng?igsh=MXVtazk2aWV5Mzl1ZA==' },
+    { icon: X, href: 'https://x.com/Realvista_NG?t=4wyone_-O3TiMPEgw9Gw-w&s=09' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/realvista-ng/' }
   ];
 
   const companyLinks = [
-    'About Us',
-    'Contact Us',
-    'Terms',
-    'Policy'
+    {
+      name: "Faq", link: "/faq"
+    },
+    {
+      name: "Trend", link: "/trend"
+    },
+    {
+      name: "Contact Us", link: "/contact"
+    }
+
   ];
 
   return (
@@ -39,13 +46,13 @@ export default function Footer() {
           <p className="text-white/80">
             Realvista is user-friendly and offers features like onboarding tutorials, simple tools for tracking finances, and guidance for first-time buyers and investors.
           </p>
-          
+
           {/* Social Links */}
           <div className="flex space-x-4">
             {socialLinks.map((social, index) => (
-              <a 
-                key={index} 
-                href={social.href} 
+              <a
+                key={index}
+                href={social.href}
                 className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-colors"
               >
                 <social.icon className="text-white" size={20} />
@@ -59,18 +66,18 @@ export default function Footer() {
           <h3 className="text-xl font-semibold mb-6">Company</h3>
           <ul className="space-y-4">
             {companyLinks.map((link, index) => (
-              <li key={index}>
-                <a 
-                  href="#" 
-                  className="flex items-center group text-white/80 hover:text-white transition-colors"
-                >
-                  <ChevronRight 
-                    size={16} 
-                    className="mr-2 text-white/50 group-hover:translate-x-1 transition-transform"
-                  />
-                  {link}
-                </a>
-              </li>
+              <Link
+                key={index}
+                href={link.link}
+                className="flex items-center group text-white/80 hover:text-white transition-colors"
+              >
+                <ChevronRight
+                  size={16}
+                  className="mr-2 text-white/50 group-hover:translate-x-1 transition-transform"
+                />
+                {link.name}
+              </Link>
+
             ))}
           </ul>
         </div>
@@ -105,7 +112,7 @@ export default function Footer() {
               <span className="text-gray-500">QR Code</span>
             </div>
           </div>
-          
+
           <button className="bg-[#FB902D] text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-colors flex items-center space-x-2">
             <span>Download App</span>
           </button>
@@ -118,8 +125,8 @@ export default function Footer() {
           © Realvista 2025. All rights reserved.
         </p>
         <div className="flex space-x-4 text-sm text-white/70">
-          <a href="#" className="hover:text-white">Privacy Policy</a>
-          <a href="#" className="hover:text-white">Terms of Service</a>
+          <a href="https://www.realvistaproperties.com/privacy-policy" className="hover:text-white">Privacy Policy</a>
+          <a href="https://www.realvistaproperties.com/terms-of-use" className="hover:text-white">Terms of Service</a>
         </div>
       </div>
     </footer>
