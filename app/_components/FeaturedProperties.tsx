@@ -238,7 +238,7 @@ const FeaturedProperties = () => {
                           <span className="text-xs font-medium">{property.area || 0} Sq Ft</span>
                         </div>
                       </div>
-                      <Link href={`/property/${property.id}`} className="block">
+                      <Link href={`/listings/${property.id}`} className="block cursor-pointer">
                         <button className="w-full mt-6 bg-[#348b8b] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#297b7b] transition-colors shadow-sm">
                           View Details
                         </button>

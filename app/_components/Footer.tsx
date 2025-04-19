@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import {
   Facebook,
@@ -10,6 +11,7 @@ import {
   X
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   const socialLinks = [
@@ -21,15 +23,17 @@ export default function Footer() {
 
   const companyLinks = [
     {
-      name: "Faq", link: "/faq"
-    },
-    {
-      name: "Trend", link: "/trend"
+      name: "Agents", link: "/agents"
     },
     {
       name: "Contact Us", link: "/contact"
+    },
+    {
+      name: "Privacy Policy", link: "/privacy-policy"
+    },
+    {
+      name: "Terms of use", link: "/terms"
     }
-
   ];
 
   return (
@@ -37,12 +41,9 @@ export default function Footer() {
       <div className="container mx-auto px-4 grid md:grid-cols-4 gap-8">
         {/* App Description Column */}
         <div className="space-y-6">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-              <span className="text-2xl font-bold text-white">R</span>
-            </div>
-            <h2 className="text-2xl font-bold">Realvista</h2>
-          </div>
+          <Link href="/" className='cursor-pointer '>
+            <Image src="/logo.webp" width={200} height={30} alt="logo" className='md:ml-[-1.3rem]' />
+          </Link>
           <p className="text-white/80">
             Realvista is user-friendly and offers features like onboarding tutorials, simple tools for tracking finances, and guidance for first-time buyers and investors.
           </p>
@@ -52,6 +53,7 @@ export default function Footer() {
             {socialLinks.map((social, index) => (
               <a
                 key={index}
+                target='_blank'
                 href={social.href}
                 className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-colors"
               >
@@ -96,11 +98,12 @@ export default function Footer() {
             </li>
             <li className="flex items-center space-x-3">
               <Mail size={20} className="text-white/50" />
-              <span>contact@realvista.com</span>
+              <span>contact@realvistaproperties.com</span>
             </li>
             <li className="flex items-center space-x-3">
               <Phone size={20} className="text-white/50" />
-              <span>+1 (555) 123-4567</span>
+              <span>07043065222
+              </span>
             </li>
           </ul>
         </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { ChevronDown, ChevronUp, Search, Home, Mail, Phone, MessageSquare } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -23,8 +23,8 @@ const FAQPage: React.FC = () => {
     // FAQ data
     const faqItems: FAQItem[] = [
         {
-            question: "What services does RealVista offer?",
-            answer: "RealVista provides a wide range of real estate services, which are categorized into four: (i) Portfolio Management: We provide a robust platform that allows users to update and manage their diverse real estate portfolios in real time. (ii) Investment Platform: Our investment services allow beginners and established real estate investors to seamlessly access affordable properties and generate cash flow by acquiring property slots depending on their financial capabilities. (iii) Market: RealVista is the meeting place for real estate buyers and sellers. Registered users, real estate agents, and companies can freely upload properties for rent or sale. These grants access to a pool of quality properties for the buyers. (iv) Mutual Investment: This unique feature allows for group mutual funding of properties. A group of investors can create an independent group. Each group can add member, upload, and manage their properties independently.",
+            question: "What services does Real vista offer?",
+            answer: "Real vista provides a wide range of real estate services, which are categorized into four: (i) Portfolio Management: We provide a robust platform that allows users to update and manage their diverse real estate portfolios in real time. (ii) Investment Platform: Our investment services allow beginners and established real estate investors to seamlessly access affordable properties and generate cash flow by acquiring property slots depending on their financial capabilities. (iii) Market: Real vista is the meeting place for real estate buyers and sellers. Registered users, real estate agents, and companies can freely upload properties for rent or sale. These grants access to a pool of quality properties for the buyers. (iv) Mutual Investment: This unique feature allows for group mutual funding of properties. A group of investors can create an independent group. Each group can add member, upload, and manage their properties independently.",
             category: "General"
         },
         {
@@ -53,12 +53,12 @@ const FAQPage: React.FC = () => {
             category: "Portfolio Management"
         },
         {
-            question: "Who can invest with RealVista?",
-            answer: "The RealVista investment platform is regulated under real estate investment regulations. Our investment platform is mostly suitable for institutional investors or individuals with the experience, knowledge, and expertise necessary to make independent investment decisions and understand the risks posed by investment in real estate properties.",
+            question: "Who can invest with Real vista?",
+            answer: "The Real vista investment platform is regulated under real estate investment regulations. Our investment platform is mostly suitable for institutional investors or individuals with the experience, knowledge, and expertise necessary to make independent investment decisions and understand the risks posed by investment in real estate properties.",
             category: "Investment Platform"
         },
         {
-            question: "How can I learn more about investment opportunities with RealVista?",
+            question: "How can I learn more about investment opportunities with Real vista?",
             answer: "We have a simplified system for you to discover more about investment opportunities with us. You can begin by exploring our website, where you will find detailed information about our investment products, strategies, and current portfolios. Additionally, consider registering on our mobile app or website to benefit from notifications of our latest product launches and newsletters.",
             category: "Investment Platform"
         },
@@ -69,12 +69,12 @@ const FAQPage: React.FC = () => {
         },
         {
             question: "How do I join a mutual fund group?",
-            answer: "Every mutual fund group is an independent and closed group. They are not listed/created by RealVista, and therefore, we cannot add you to a group. You can only be added to a group through a private invitation by the admin of the group.",
+            answer: "Every mutual fund group is an independent and closed group. They are not listed/created by Real vista, and therefore, we cannot add you to a group. You can only be added to a group through a private invitation by the admin of the group.",
             category: "Mutual Investment"
         },
         {
             question: "What are the rules of the groups?",
-            answer: "Each group has its own private terms and conditions. We encourage you to pay close attention and review the rules before joining any group. The groups are not managed by RealVista; therefore, we will not be held responsible for any mismanagement of funds or wrong investment decisions.",
+            answer: "Each group has its own private terms and conditions. We encourage you to pay close attention and review the rules before joining any group. The groups are not managed by Real vista; therefore, we will not be held responsible for any mismanagement of funds or wrong investment decisions.",
             category: "Mutual Investment"
         },
         {

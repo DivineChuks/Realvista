@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { HelpCircle, MessageCircle, ChevronDown } from 'lucide-react';
+import Link from 'next/link';
 
 interface FaqProps {
     question: string,
@@ -23,9 +24,9 @@ const FAQItem = ({ question, answer }: FaqProps) => {
                 </div>
             </button>
 
-            <motion.div 
+            <motion.div
                 initial={{ height: 0, opacity: 0 }}
-                animate={{ 
+                animate={{
                     height: isOpen ? "auto" : 0,
                     opacity: isOpen ? 1 : 0
                 }}
@@ -60,14 +61,14 @@ export default function FAQSection() {
             question: 'Can I customize my dashboard?',
             answer: 'Yes, Realvista offers extensive customization options. You can personalize widgets, set custom goals, and create a dashboard that reflects your unique real estate strategy.'
         },
-        {
-            question: 'How do I contact support?',
-            answer: "Our support team is available 24/7 through in-app chat, email, and phone. We're committed to providing prompt and helpful assistance."
-        }
+        // {
+        //     question: 'How do I contact support?',
+        //     answer: "Our support team is available 24/7 through in-app chat, email, and phone. We're committed to providing prompt and helpful assistance."
+        // }
     ];
 
-    const filteredFaqs = faqs.filter(faq => 
-        faq.question.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    const filteredFaqs = faqs.filter(faq =>
+        faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
         faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -79,9 +80,9 @@ export default function FAQSection() {
                 <div className="absolute bottom-1/4 -right-16 w-64 h-64 bg-orange-200 rounded-full blur-3xl opacity-20"></div>
                 <div className="absolute top-3/4 left-1/3 w-32 h-32 bg-purple-200 rounded-full blur-3xl opacity-10"></div>
             </div>
-            
+
             <div className="container mx-auto px-4 max-w-6xl relative z-10">
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
@@ -97,11 +98,11 @@ export default function FAQSection() {
                     <p className="text-gray-600 max-w-2xl mx-auto mb-8">
                         Have questions? We&apos;ve got answers! Discover how Realvista can help you achieve your real estate goals.
                     </p>
-                    
+
                 </motion.div>
-                
+
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
@@ -121,15 +122,15 @@ export default function FAQSection() {
                                 whileTap={{ scale: 0.98 }}
                                 className="bg-[#FB902D] text-white px-8 rounded-full py-3.5 w-full font-medium shadow-md flex items-center justify-center space-x-2 transition-all hover:shadow-lg"
                             >
-                                <span>Contact Support</span>
+                                <Link href="/contact">Contact Support</Link>
                             </motion.button>
-                            
+
                             {/* Decorative Pattern */}
                             <div className="absolute bottom-0 right-0 w-24 h-24 bg-gray-50 rounded-tl-full -mb-8 -mr-8 z-0 opacity-75"></div>
                         </div>
                     </motion.div>
-                    
-                    <motion.div 
+
+                    <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
@@ -144,6 +145,7 @@ export default function FAQSection() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                     viewport={{ once: true }}
+                                    className=''
                                 >
                                     <FAQItem
                                         question={faq.question}
@@ -157,7 +159,7 @@ export default function FAQSection() {
                                     <HelpCircle className="text-gray-400" size={28} />
                                 </div>
                                 <p className="text-gray-600">No results found for &apos;{searchTerm}&apos;</p>
-                                <button 
+                                <button
                                     onClick={() => setSearchTerm("")}
                                     className="mt-4 text-[#FB902D] hover:underline"
                                 >
@@ -165,15 +167,9 @@ export default function FAQSection() {
                                 </button>
                             </div>
                         )}
-                        
-                        {/* FAQ Feedback */}
-                        {filteredFaqs.length > 0 && (
-                            <div className="mt-8 pt-6 border-t border-gray-100 text-center">
-                                <p className="text-gray-500 text-sm">
-                                    Was this helpful? <a href="#" className="text-[#FB902D] hover:underline">Yes</a> • <a href="#" className="text-orange-500 hover:underline">No</a>
-                                </p>
-                            </div>
-                        )}
+                        <div className='mt-10 flex justify-end'>
+                            <Link className='bg-[#348b8b] text-white rounded-md py-3 px-6' href="/faq">Learn More</Link>
+                        </div>
                     </motion.div>
                 </div>
             </div>

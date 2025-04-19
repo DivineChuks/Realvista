@@ -90,6 +90,7 @@ interface ActiveFilter {
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Format property price
   const formatPrice = (price: string) => {
@@ -102,6 +103,28 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
       return property.image_files[0].file;
     }
     return "/default-property.jpg"; // Default image if none available
+  };
+
+  const toggleFavorite = async (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigation
+    setIsLoading(true);
+
+    try {
+      if (isFavorite) {
+        // Remove from favorites
+        await api.delete(`/market/remove-bookmark/${property.id}/`);
+      } else {
+        // Add to favorites
+        await api.post(`/market/bookmark-property/${property.id}/`);
+      }
+      // Toggle the favorite status
+      setIsFavorite(!isFavorite);
+    } catch (error) {
+      console.error("Error toggling favorite status:", error);
+      // Optionally show error message to user
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -137,15 +160,17 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
 
           <div className="absolute top-4 right-4 flex space-x-2">
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                setIsFavorite(!isFavorite);
-              }}
-              className="bg-white/90 p-2 rounded-full hover:bg-white transition-colors"
+              onClick={toggleFavorite}
+              disabled={isLoading}
+              className={`bg-white/90 p-2 rounded-full hover:bg-white transition-colors ${isLoading ? 'opacity-70' : ''}`}
             >
-              <Heart
-                className={`w-5 h-5 ${isFavorite ? 'text-[#348b8b] fill-[#348b8b]' : 'text-gray-700'}`}
-              />
+              {isLoading ? (
+                <div className="w-5 h-5 border-2 border-gray-300 border-t-[#348b8b] rounded-full animate-spin"></div>
+              ) : (
+                <Heart
+                  className={`w-5 h-5 ${isFavorite ? 'text-[#348b8b] fill-[#348b8b]' : 'text-gray-700'}`}
+                />
+              )}
             </button>
             <button
               onClick={(e) => e.preventDefault()}
@@ -235,7 +260,7 @@ const ListingsPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState<{ results: Property[] } | null>(null);
   const [filteredProperties, setFilteredProperties] = useState<Property[]>([]);
-  
+
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -261,17 +286,17 @@ const ListingsPage: React.FC = () => {
   // Apply filters, sorting, and search functionality
   useEffect(() => {
     if (!listings?.results) return;
-    
+
     setLoading(true);
-    
+
     setTimeout(() => {
       // Apply filters
       let result = [...listings.results];
-      
+
       // Apply search query
       if (filters.searchQuery) {
         const query = filters.searchQuery.toLowerCase();
-        result = result.filter(property => 
+        result = result.filter(property =>
           property.title.toLowerCase().includes(query) ||
           property.address.toLowerCase().includes(query) ||
           property.city.toLowerCase().includes(query) ||
@@ -285,31 +310,31 @@ const ListingsPage: React.FC = () => {
           property => parseFloat(property.price) >= parseFloat(filters.minPrice)
         );
       }
-      
+
       if (filters.maxPrice) {
         result = result.filter(
           property => parseFloat(property.price) <= parseFloat(filters.maxPrice)
         );
       }
-      
+
       if (filters.bedrooms) {
         result = result.filter(
           property => property.bedrooms !== null && property.bedrooms >= parseInt(filters.bedrooms)
         );
       }
-      
+
       if (filters.purpose) {
         result = result.filter(
           property => property.listing_purpose === filters.purpose
         );
       }
-      
+
       if (filters.propertyType) {
         result = result.filter(
           property => property.property_type === filters.propertyType
         );
       }
-      
+
       if (filters.yearBuilt) {
         result = result.filter(
           property => property.year_built !== null && property.year_built >= parseInt(filters.yearBuilt)
@@ -328,14 +353,14 @@ const ListingsPage: React.FC = () => {
       }
 
       setFilteredProperties(result);
-      
+
       // Calculate total pages for pagination
       const total = Math.ceil(result.length / itemsPerPage);
       setTotalPages(total > 0 ? total : 1);
-      
+
       // Reset to first page when filters change
       setCurrentPage(1);
-      
+
       setLoading(false);
     }, 500);
 
@@ -346,10 +371,10 @@ const ListingsPage: React.FC = () => {
     if (filters.maxPrice) newActiveFilters.push({ key: 'maxPrice', label: 'Max Price', value: `${filters.maxPrice}` });
     if (filters.bedrooms) newActiveFilters.push({ key: 'bedrooms', label: 'Bedrooms', value: `${filters.bedrooms}+` });
     if (filters.purpose) newActiveFilters.push({ key: 'purpose', label: 'Purpose', value: filters.purpose });
-    if (filters.propertyType) newActiveFilters.push({ 
-      key: 'propertyType', 
-      label: 'Type', 
-      value: filters.propertyType.charAt(0).toUpperCase() + filters.propertyType.slice(1) 
+    if (filters.propertyType) newActiveFilters.push({
+      key: 'propertyType',
+      label: 'Type',
+      value: filters.propertyType.charAt(0).toUpperCase() + filters.propertyType.slice(1)
     });
     if (filters.yearBuilt) newActiveFilters.push({ key: 'yearBuilt', label: 'Year', value: `Since ${filters.yearBuilt}` });
 
@@ -406,19 +431,19 @@ const ListingsPage: React.FC = () => {
   // Generate pagination links
   const renderPaginationItems = () => {
     const items = [];
-    
+
     // Always show first page
     items.push(
       <PaginationItem key="first">
-        <PaginationLink 
-          isActive={currentPage === 1} 
+        <PaginationLink
+          isActive={currentPage === 1}
           onClick={() => handlePageChange(1)}
         >
           1
         </PaginationLink>
       </PaginationItem>
     );
-    
+
     // Show ellipsis if needed
     if (currentPage > 3) {
       items.push(
@@ -427,14 +452,14 @@ const ListingsPage: React.FC = () => {
         </PaginationItem>
       );
     }
-    
+
     // Show current page and adjacent pages
     for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
       if (i <= 1 || i >= totalPages) continue;
       items.push(
         <PaginationItem key={i}>
-          <PaginationLink 
-            isActive={currentPage === i} 
+          <PaginationLink
+            isActive={currentPage === i}
             onClick={() => handlePageChange(i)}
           >
             {i}
@@ -442,7 +467,7 @@ const ListingsPage: React.FC = () => {
         </PaginationItem>
       );
     }
-    
+
     // Show ellipsis if needed
     if (currentPage < totalPages - 2) {
       items.push(
@@ -451,13 +476,13 @@ const ListingsPage: React.FC = () => {
         </PaginationItem>
       );
     }
-    
+
     // Always show last page if there's more than one page
     if (totalPages > 1) {
       items.push(
         <PaginationItem key="last">
-          <PaginationLink 
-            isActive={currentPage === totalPages} 
+          <PaginationLink
+            isActive={currentPage === totalPages}
             onClick={() => handlePageChange(totalPages)}
           >
             {totalPages}
@@ -465,7 +490,7 @@ const ListingsPage: React.FC = () => {
         </PaginationItem>
       );
     }
-    
+
     return items;
   };
 
@@ -502,8 +527,8 @@ const ListingsPage: React.FC = () => {
                 className="w-full p-4 pl-12 pr-4 rounded-lg border border-gray-300 focus:border-[#348b8b] focus:ring-1 focus:ring-[#348b8b] focus:outline-none transition-colors shadow-sm"
               />
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#348b8b] text-white p-2 rounded-lg hover:bg-[#2d7a7a] transition-colors"
               >
                 <Search className="w-4 h-4" />
@@ -560,7 +585,7 @@ const ListingsPage: React.FC = () => {
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-700">Min Price</label>
                       <div className="relative">
-                        <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                        {/* <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" /> */}
                         <input
                           type="number"
                           name="minPrice"
@@ -574,7 +599,7 @@ const ListingsPage: React.FC = () => {
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-700">Max Price</label>
                       <div className="relative">
-                        <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                        {/* <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" /> */}
                         <input
                           type="number"
                           name="maxPrice"
@@ -760,9 +785,9 @@ const ListingsPage: React.FC = () => {
                         className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
                       />
                     </PaginationItem>
-                    
+
                     {renderPaginationItems()}
-                    
+
                     <PaginationItem>
                       <PaginationNext
                         onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
@@ -784,8 +809,8 @@ const ListingsPage: React.FC = () => {
           <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
             Connect with thousands of potential buyers and tenants by listing your property on our platform.
           </p>
-          <Link 
-            href="/contact" 
+          <Link
+            href="/contact"
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-[#348b8b] bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/50 transition-colors"
           >
             Contact Us
@@ -810,12 +835,12 @@ const ListingsPage: React.FC = () => {
                 </a>
                 <a href="#" className="text-gray-400 hover:text-white">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                   </svg>
                 </a>
                 <a href="#" className="text-gray-400 hover:text-white">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                   </svg>
                 </a>
               </div>

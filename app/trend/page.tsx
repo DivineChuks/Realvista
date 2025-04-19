@@ -1,21 +1,20 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { 
-  TrendingUp, 
-  MapPin, 
-  Home, 
-  DollarSign, 
-  BarChart2, 
+import {
+  TrendingUp,
+  MapPin,
+  Home,
+  DollarSign,
+  BarChart2,
   Globe,
   Calendar,
   Eye,
-  ExternalLink,
   Newspaper,
-  ArrowRight,
   ChevronRight,
   LoaderCircle
 } from 'lucide-react';
 import api from '@/config/apiClient';
+import Link from 'next/link';
 
 // TypeScript interfaces
 interface MarketTrend {
@@ -83,12 +82,12 @@ const TrendsPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const categories: string[] = [
-    'All', 
+    'All',
     ...new Set(marketTrends.map(trend => trend.category))
   ];
 
-  const filteredTrends: MarketTrend[] = selectedCategory === 'All' 
-    ? marketTrends 
+  const filteredTrends: MarketTrend[] = selectedCategory === 'All'
+    ? marketTrends
     : marketTrends.filter(trend => trend.category === selectedCategory);
 
   useEffect(() => {
@@ -145,16 +144,16 @@ const TrendsPage: React.FC = () => {
             Market Trends <span className="text-teal-600">&</span> Insights
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg mb-10">
-            Stay informed with the latest real estate market trends, investment opportunities, 
+            Stay informed with the latest real estate market trends, investment opportunities,
             and emerging patterns shaping the property landscape.
           </p>
-          
+
           {/* Search Bar */}
           <div className="max-w-xl mx-auto">
             <div className="relative flex items-center">
-              <input 
-                type="text" 
-                placeholder="Search for market trends, reports, or insights..." 
+              <input
+                type="text"
+                placeholder="Search for market trends, reports, or insights..."
                 className="w-full py-4 pl-5 pr-12 rounded-full shadow-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
               />
               <button className="absolute right-3 bg-teal-600 text-white p-2 rounded-full hover:bg-teal-700 transition-colors">
@@ -172,13 +171,13 @@ const TrendsPage: React.FC = () => {
         <div className="flex justify-center mb-12">
           <div className="bg-white rounded-full shadow-md inline-flex p-1 border border-gray-100">
             {categories.map(category => (
-              <button 
+              <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={`
                   px-6 py-3 rounded-full transition-all font-medium text-sm
-                  ${selectedCategory === category 
-                    ? 'bg-teal-600 text-white shadow-md' 
+                  ${selectedCategory === category
+                    ? 'bg-teal-600 text-white shadow-md'
                     : 'bg-white text-gray-700 hover:text-teal-600'}
                 `}
               >
@@ -191,8 +190,8 @@ const TrendsPage: React.FC = () => {
         {/* Trends Grid */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           {filteredTrends.map(trend => (
-            <div 
-              key={trend.id} 
+            <div
+              key={trend.id}
               className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all border border-gray-100 hover:border-teal-100 group"
             >
               <div className="inline-flex items-center justify-center w-16 h-16 bg-teal-50 rounded-2xl mb-6 group-hover:bg-teal-100 transition-colors">
@@ -200,9 +199,9 @@ const TrendsPage: React.FC = () => {
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800 group-hover:text-teal-600 transition-colors">{trend.title}</h3>
               <p className="text-gray-600">{trend.description}</p>
-              <button className="mt-6 flex items-center text-teal-600 font-medium hover:text-teal-700 transition-colors">
+              {/* <button className="mt-6 flex items-center text-teal-600 font-medium hover:text-teal-700 transition-colors">
                 Learn more <ArrowRight className="ml-2 w-4 h-4" />
-              </button>
+              </button> */}
             </div>
           ))}
         </div>
@@ -233,15 +232,15 @@ const TrendsPage: React.FC = () => {
           ) : (
             <div className="grid md:grid-cols-3 gap-8">
               {reports.map(report => (
-                <div 
-                  key={report.id} 
+                <div
+                  key={report.id}
                   className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all border border-gray-100"
                 >
                   <div className="h-48 bg-gray-200 relative">
                     {report.attachment && (
-                      <img 
-                        src={report.attachment} 
-                        alt={report.title} 
+                      <img
+                        src={report.attachment}
+                        alt={report.title}
                         className="w-full h-full object-cover"
                       />
                     )}
@@ -268,21 +267,20 @@ const TrendsPage: React.FC = () => {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-500">Source: {report.source}</span>
-                      <a 
-                        href={report.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <Link
+                        href={`/trend/${report.id}`}
+                        rel="noopener noreferrer"
                         className="flex items-center text-teal-600 font-medium hover:text-teal-700 transition-colors"
                       >
-                        Read More <ExternalLink className="ml-1 w-4 h-4" />
-                      </a>
+                        Read More
+                      </Link>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           )}
-          
+
           <div className="mt-8 text-center md:hidden">
             <button className="flex items-center justify-center mx-auto text-teal-600 font-medium hover:text-teal-700 transition-colors">
               View all reports <ChevronRight className="ml-1 w-4 h-4" />
@@ -298,7 +296,7 @@ const TrendsPage: React.FC = () => {
             </div>
             <h2 className="text-3xl font-bold text-gray-800">Market Performance</h2>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-xl font-semibold mb-4 text-gray-700 flex items-center">
@@ -307,19 +305,18 @@ const TrendsPage: React.FC = () => {
               </h3>
               <div className="space-y-4">
                 {marketData.map((data, index) => (
-                  <div 
-                    key={data.name} 
-                    className={`bg-gradient-to-r ${
-                      index === marketData.length - 1 
-                        ? 'from-teal-50 to-teal-100 border-l-4 border-teal-500' 
+                  <div
+                    key={data.name}
+                    className={`bg-gradient-to-r ${index === marketData.length - 1
+                        ? 'from-teal-50 to-teal-100 border-l-4 border-teal-500'
                         : 'from-gray-50 to-gray-100'
-                    } rounded-lg p-4`}
+                      } rounded-lg p-4`}
                   >
                     <div className="flex justify-between">
                       <span className="font-medium text-gray-700">{data.name}</span>
                       <div className="flex space-x-4">
                         <div className="flex items-center">
-                          <span className="text-gray-600 mr-2">Median:</span> 
+                          <span className="text-gray-600 mr-2">Median:</span>
                           <span className="font-semibold">${data.Median.toLocaleString()}</span>
                         </div>
                         <div className="flex items-center">
@@ -328,20 +325,20 @@ const TrendsPage: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Growth indicators for non-first years */}
                     {index > 0 && (
                       <div className="flex justify-end mt-2 text-sm">
                         <div className="flex items-center mr-4">
                           <TrendingUp className="w-3 h-3 mr-1 text-green-600" />
                           <span className="text-green-600">
-                            +{(((data.Median - marketData[index-1].Median) / marketData[index-1].Median) * 100).toFixed(1)}%
+                            +{(((data.Median - marketData[index - 1].Median) / marketData[index - 1].Median) * 100).toFixed(1)}%
                           </span>
                         </div>
                         <div className="flex items-center">
                           <TrendingUp className="w-3 h-3 mr-1 text-green-600" />
                           <span className="text-green-600">
-                            +{(((data.Average - marketData[index-1].Average) / marketData[index-1].Average) * 100).toFixed(1)}%
+                            +{(((data.Average - marketData[index - 1].Average) / marketData[index - 1].Average) * 100).toFixed(1)}%
                           </span>
                         </div>
                       </div>
@@ -350,7 +347,7 @@ const TrendsPage: React.FC = () => {
                 ))}
               </div>
             </div>
-            
+
             <div>
               <h3 className="text-xl font-semibold mb-4 text-gray-700 flex items-center">
                 <MapPin className="w-5 h-5 mr-2 text-teal-600" />
@@ -393,7 +390,7 @@ const TrendsPage: React.FC = () => {
               </ul>
             </div>
           </div>
-          
+
           {/* Call to Action */}
           {/* <div className="mt-10 text-center">
             <button className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 px-8 rounded-full transition-colors shadow-md hover:shadow-lg flex items-center mx-auto">
