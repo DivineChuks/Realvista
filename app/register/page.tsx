@@ -148,7 +148,7 @@ const SignUpPage = () => {
                     };
 
                 // Make API call
-                const response = await api.post('/accounts/register_user', payload);
+                const response = await api.post('/accounts/register_user/', payload);
                 console.log('API Response:', response.data);
 
                 // If successful, move to success stage

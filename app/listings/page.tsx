@@ -200,7 +200,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           </span>
         </div>
 
-        <div className="grid grid-cols-3 gap-2 text-center border-t pt-4 mt-4">
+        <div className="grid grid-cols-4 text-center border-t pt-4 mt-4">
           {property.bedrooms !== null && (
             <div className="flex flex-col items-center">
               <BedDouble className="text-[#348b8b] mb-1 w-5 h-5" />
