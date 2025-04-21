@@ -203,7 +203,7 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-gray-800">Our Office</p>
-                      <p className="text-gray-600">123 Real Estate Avenue, City, State 12345</p>
+                      <p className="text-gray-600">No 7 MCC Road Owerri, Imo State, Nigeria.</p>
                     </div>
                   </div>
 

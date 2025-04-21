@@ -178,7 +178,7 @@ const ReportDetailPage: React.FC = () => {
                                 </div>
 
                                 {/* Action buttons */}
-                                <div className="flex flex-wrap gap-3 mb-8">
+                                {/* <div className="flex flex-wrap gap-3 mb-8">
                                     <button className="inline-flex items-center bg-teal-50 hover:bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium transition-colors">
                                         <Bookmark className="w-4 h-4 mr-2" /> Save
                                     </button>
@@ -191,7 +191,7 @@ const ReportDetailPage: React.FC = () => {
                                     <button className="inline-flex items-center bg-teal-50 hover:bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium transition-colors">
                                         <Printer className="w-4 h-4 mr-2" /> Print
                                     </button>
-                                </div>
+                                </div> */}
 
                                 {/* Tags */}
                                 {report.tags && report.tags.length > 0 && (

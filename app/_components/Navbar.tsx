@@ -21,7 +21,7 @@ export default function Navbar() {
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchFilter, setSearchFilter] = useState('all');
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<any>();
 
   // Load user data from localStorage on component mount
   useEffect(() => {

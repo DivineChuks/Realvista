@@ -286,7 +286,7 @@ const PricingPage: React.FC = () => {
                   <div className="mb-6 flex items-center justify-center">
                     <div className="flex items-baseline">
                       {formatPrice(getCurrentPrice(plan))}
-                      {parseFloat(getCurrentPrice(plan)) !== 0 && <span className="text-gray-600 ml-2 text-lg">/ month</span>}
+                      {parseFloat(getCurrentPrice(plan)) !== 0 && <span className="text-gray-600 text-xs">/ month</span>}
                     </div>
                   </div>
 
@@ -307,7 +307,7 @@ const PricingPage: React.FC = () => {
 
                   <div className="mt-8 text-left">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                      <Check className="w-5 h-5 mr-2 text-[#348b8b]" />
+                      {/* <Check className="w-5 h-5 mr-2 text-[#348b8b]" /> */}
                       Features Included
                     </h3>
                     <ul className="space-y-3">
@@ -316,16 +316,8 @@ const PricingPage: React.FC = () => {
                           <div className="w-5 h-5 mr-3 flex-shrink-0 text-[#348b8b] mt-1">
                             <Check className="w-full h-full" />
                           </div>
-                          <div className="flex items-center flex-wrap">
+                          <div className="flex items-center">
                             {feature}
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <Info className="w-4 h-4 ml-1.5 text-gray-400 cursor-pointer hover:text-gray-600" />
-                              </TooltipTrigger>
-                              <TooltipContent side="top" className="max-w-xs">
-                                <p>{feature}</p>
-                              </TooltipContent>
-                            </Tooltip>
                           </div>
                         </li>
                       ))}

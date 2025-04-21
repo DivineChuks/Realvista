@@ -58,8 +58,8 @@ export default function FAQSection() {
             answer: 'We use bank-level encryption and follow strict data protection protocols to ensure your information remains completely confidential and secure.'
         },
         {
-            question: 'Can I customize my dashboard?',
-            answer: 'Yes, Realvista offers extensive customization options. You can personalize widgets, set custom goals, and create a dashboard that reflects your unique real estate strategy.'
+            question: 'How do I update a property in my portfolio?',
+            answer: "To update any property in your portfolio, select the portfolio button. Once on your portfolio, click the addition icon and then select 'update property.' You can also update your property from the 'Manager' button on the app."
         },
         // {
         //     question: 'How do I contact support?',

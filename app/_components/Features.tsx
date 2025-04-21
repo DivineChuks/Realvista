@@ -65,7 +65,7 @@ const RealvistaFeatures = () => {
 
                         <div className="relative">
                             {/* Feature tags floating around image */}
-                            <div className="absolute top-10 -left-8 bg-white px-3 py-1 rounded-lg shadow-md z-10 hidden md:flex items-center space-x-2">
+                            <div className="absolute top-10 bg-white px-3 py-1 rounded-lg shadow-md z-10 hidden md:flex items-center space-x-2">
                                 <CheckCircle size={14} className="text-teal-500" />
                                 <span className="text-xs font-medium">Real-time tracking</span>
                             </div>
@@ -75,12 +75,12 @@ const RealvistaFeatures = () => {
                                 <span className="text-xs font-medium">Smart analytics</span>
                             </div> */}
 
-                            <Image
-                                src="/features.webp"
-                                width={600}
-                                height={800}
+                            <img
+                                src="/design.jpg"
+                                // width={600}
+                                // height={800}
                                 alt="Realvista App Features"
-                                className="w-full h-auto"
+                                className=" mb-16 rounded-md"
                             />
                             <div className="flex flex-col sm:flex-row justify-center gap-4 w-full">
                                 <a

@@ -9,16 +9,16 @@ export default function AboutUs() {
     return (
         <div className="min-h-screen bg-white">
             <Head>
-                <title>About Us | RealVista Properties</title>
+                <title>About Us | Realvista Properties</title>
                 <meta name="description" content="Learn about RealVista Properties and our mission to turn your real estate dreams into reality" />
             </Head>
 
             {/* Hero Section */}
             <div className="w-full bg-[#348b8b] text-white">
                 <div className="container mx-auto px-4 py-20 md:py-32">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-6">About RealVista Properties</h1>
+                    <h1 className="text-4xl md:text-5xl font-bold mb-6">About Realvista Properties</h1>
                     <p className="text-xl md:text-2xl max-w-3xl opacity-90">
-                        Where we turn your real estate dreams into reality, one property at a time.
+                        Here, we turn your real estate dreams into reality, one property at a time.
                     </p>
                 </div>
             </div>
@@ -124,7 +124,7 @@ export default function AboutUs() {
                 {/* Closing */}
                 <div className="border-t border-gray-200 pt-12">
                     <p className="text-xl text-center text-gray-700 max-w-3xl mx-auto">
-                        At <span className="font-bold">RealVista Properties</span>, integrity, trust, and client satisfaction are the pillars of our business. Our dedication to building lasting relationships with our clients and our passion for real estate fuel our daily efforts to ensure your success. Join us and experience a higher standard of excellence in real estate.
+                        At <span className="font-bold">Realvista Properties</span>, integrity, trust, and client satisfaction are the pillars of our business. Our dedication to building lasting relationships with our clients and our passion for real estate fuel our daily efforts to ensure your success. Join us and experience a higher standard of excellence in real estate.
                     </p>
                 </div>
             </div>

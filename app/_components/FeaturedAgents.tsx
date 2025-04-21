@@ -109,7 +109,7 @@ const FeaturedAgents: React.FC = () => {
 
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <Badge className="mb-4 text-white" style={{ backgroundColor: primaryColor }}>Our Experts</Badge>
+          {/* <Badge className="mb-4 text-white" style={{ backgroundColor: primaryColor }}>Our Experts</Badge> */}
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Featured Agents</h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Meet our exceptional real estate professionals dedicated to helping you find your perfect property and navigate the market with confidence.
